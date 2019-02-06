@@ -14,5 +14,6 @@ int main()
     scanf("%d",&pos);
     cadenaArchivo=subCade(archivo,pos,car);
     cadenas(cadenaArchivo);
+    printf("La longtud de la cadena es: %d\n",longitudCadena(cadenaArchivo));
     return 0;
 }

@@ -10,6 +10,19 @@ void errorArchivo(FILE *arch)
     else
         printf("El archivo se abrio con exito.\n\n");
 }
+int longitudCadena(char *cad)
+{
+    char *aux=cad;
+    int i=0;
+    while(*aux!='\0')
+    {
+        if (*aux=='\n')
+            break;
+        i++;
+        aux++;
+    }
+    return i;
+}
 FILE *buscarArchivo(char *nombre)
 {
     FILE *arch=fopen(nombre,"r");

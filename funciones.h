@@ -8,3 +8,5 @@ void cadenas(char *cadena);
 char vaciarCadena();
 FILE *buscarArchivo(char *nombre);
 char *subCade(FILE *archivo,int pos, char *car);
+int longitudCadena(char *cad);
+
