@@ -4,7 +4,7 @@ int main()
 {
     char *car=(char*)malloc(sizeof(char));
     char *nombre=(char*)malloc(sizeof(char));
-    char *cadenaArchivo=(char*)malloc(sizeof(char));
+    char *cadena_archivo=(char*)malloc(sizeof(char));
     int pos;
     printf("Ingrese el nombre del archivo: ");
     scanf("%s",nombre);
@@ -12,8 +12,11 @@ int main()
     errorArchivo(archivo);
     printf("Ingrese la posicion de la palabra: ");
     scanf("%d",&pos);
-    cadenaArchivo=subCade(archivo,pos,car);
-    cadenas(cadenaArchivo);
-    printf("La longtud de la cadena es: %d\n",longitudCadena(cadenaArchivo));
+    cadena_archivo=cadenaArchivo(archivo,pos,car);
+    subCadenas(cadena_archivo);
+    prefijos(cadena_archivo);
+    printf("\n%s",invertirCadena(cadena_archivo));
+    printf("\n%s",cadena_archivo);
+    printf("\nLa longtud de la cadena es: %d\n",longitudCadena(cadena_archivo));
     return 0;
 }
