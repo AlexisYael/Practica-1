@@ -6,7 +6,7 @@ void errorArchivo(FILE *arch)
     if (arch==NULL) 
     {
         printf("El archivo no se abrio correctamente\n\n");
-        exit(0);
+        exit(1);
     }
     else
         printf("El archivo se abrio con exito.\n\n");
@@ -66,7 +66,7 @@ void subCadenas(char *cadena)
     {
         i=0;
         aux=(char *)malloc(sizeof(char));
-        for(ptr2=ptr;*ptr2!='\n';i++,ptr2++)
+        for(ptr2=ptr;*ptr2!='\0';i++,ptr2++)
         {
             aux[i]=*ptr2;
             printf("\n%s",aux);
@@ -80,25 +80,150 @@ void prefijos(char *cadena)
     char *aux=(char *)malloc(sizeof(char));
     char *aux2=(char *)malloc(sizeof(char));
     int i;
-    for(i=0,aux=cadena;*aux!='\n';aux++,i++)
+    for(i=0,aux=cadena;*aux!='\0';aux++,i++)
     {
         aux2[i]=*aux;
         printf("\n%s",aux2);
     }
     printf("\nlambda");
 }
+
 char *invertirCadena(char *cadena)
 {
-    char *ptr=(char *)malloc(sizeof(char));
-    char *ptr2=(char *)malloc(sizeof(char));
+    char *ptr;
+    char *ptr2;
     char temp;
     ptr=cadena;
-    for(ptr2=cadena;*ptr2!='\0';ptr2++);
-    for(ptr2=ptr2-2;ptr<ptr2;ptr++,ptr2--)
+
+    for(ptr2=ptr;*ptr2!='\0';ptr2++);
+
+    ptr2--;
+
+    for(;ptr<ptr2;ptr++,ptr2--)
     {
         temp = *ptr;
         *ptr = *ptr2;
         *ptr2 = temp;
     }
-    return ptr;
+    return cadena;
+}
+
+char *concatenarcadena(char *s_A, char *s_B)
+{
+    char *aux_A, *aux_B, *aux_C;
+
+    for(aux_A = s_A;*aux_A != '\0';aux_A++);
+
+    for(aux_B = s_B;*aux_B != '\0';aux_A++, aux_B++)
+        *aux_A = *aux_B;
+    *aux_A = '\0';
+
+    return s_A;
+}
+
+void subsecuencias(char *cadena)
+{
+    int mascara[200], i, j, k;
+    char *aux, *aux2;
+    int tam = longitudCadena(cadena);
+
+    for(i=1;i<tam-1;i++)
+    {
+        for(j=0;j<tam;j++, k--)
+        {
+            if(k!=0)
+                mascara[j] = 2;
+            mascara[j] = 0;
+        }
+        
+        for(j=0;j<tam;j++)
+        {
+            if(mascara[j]==2)
+            {
+                
+            }
+            
+
+
+
+
+
+
+        }
+
+        
+
+    }
+}
+
+void sufijos(char *cadena)
+{
+    char *aux=(char *)malloc(sizeof(char));
+    char *aux2=(char *)malloc(sizeof(char));
+    int i, j;
+
+    for(i=(longitudCadena(cadena)-1);i>=0;i--)
+    {
+        for(aux=&cadena[i];*aux!='\0';aux++)
+            printf("%c", *aux);
+        printf("\n");
+    }
+
+    printf("lambda");
+}
+
+void menu(char *cadena)
+{
+    char menu_2;
+    char cadena_2[100];
+
+    getchar();
+    printf("1.- Longitud\n2.- Concatenar\n3.- Invertir\n4.- Sufijos\n5.- Prefijos\n6.- Subcadenas\n7.- Subsecuencias\n8.- Salir\n ->");
+    scanf("%c", &menu_2);
+
+    switch (menu_2)
+    {
+        case '1':
+            printf("La longitud de \"%s\" es %d\n", cadena, longitudCadena(cadena));
+            break;
+
+        case '2':
+            printf("Ingresa la palabra para concatenar: ");
+            scanf("%s", cadena_2);
+            printf("La cadena resultante de %s y %s es", cadena, cadena_2);
+            printf(" \"%s\"\n", concatenarcadena(cadena, cadena_2));
+            break;
+        
+        case '3':
+            printf("La cadena inversa es \"%s\"\n", invertirCadena(cadena));
+            break;
+
+        case '4':
+            printf("Los sufijos de \"%s\" son:\n", cadena);
+            sufijos(cadena);
+            break;
+        
+        case '5':
+            printf("Los prefijos de \"%s\" son:\n", cadena);
+            prefijos(cadena);
+            break;
+
+        case '6':
+            printf("Las subcadenas de \"%s\" son:\n", cadena);
+            subCadenas(cadena);
+            break;
+
+        case '7':
+            printf("Las subsecuencias de \"%s\" son:\n", cadena);
+            subsecuencias(cadena);
+            break;
+
+        case '8':
+            exit(0);
+            break;
+    
+        default:
+            printf("Selecciona una opcion correcta :(\n");
+            break;
+    }
 }
