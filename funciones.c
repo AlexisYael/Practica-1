@@ -123,37 +123,58 @@ char *concatenarcadena(char *s_A, char *s_B)
 
 void subsecuencias(char *cadena)
 {
-    int mascara[200], i, j, k;
+    int mascara[200], i, j, k, x, flag;
     char *aux, *aux2;
     int tam = longitudCadena(cadena);
 
-    for(i=1;i<tam-1;i++)
+    for(i=1;i<tam;i++)
     {
-        for(j=0;j<tam;j++, k--)
+        //Iniciamos mascara con i '2'
+        for(j=0,k=i;j<tam;j++, k--)
         {
-            if(k!=0)
+            if(k>0)
                 mascara[j] = 2;
-            mascara[j] = 0;
+            else
+                mascara[j] = 0;
         }
+
+        printf("----\n");
+
+        for(j=0;j<tam;j++)
+            printf("%d", mascara[j]);
+        printf("\n");
+
+        printf("----\n");
         
         for(j=0;j<tam;j++)
         {
+
+            for(k=0;k<tam;k++)
+            {
+                if(mascara[k]==1)
+                    mascara[k] = 0;
+            }
+
             if(mascara[j]==2)
             {
-                
+                mascara[j] = 1;
+                for(k=0;k<tam;k++)
+                {
+                    if(mascara[k] == 0)
+                    {
+                        mascara[k] = 2;
+                        for(x=0;x<tam;x++)
+                            printf("%d", mascara[x]);
+                        printf("\n");
+
+                        mascara[k] = 1;
+                    }
+                }
             }
-            
-
-
-
-
-
-
         }
-
-        
-
     }
+
+    printf("%d\n", tam);
 }
 
 void sufijos(char *cadena)
