@@ -123,9 +123,11 @@ char *concatenarcadena(char *s_A, char *s_B)
 
 void subsecuencias(char *cadena)
 {
-    int mascara[200], i, j, k, x, flag;
+    int mascara[200], i, j, k, x, flag, cont=1;
     char *aux, *aux2;
     int tam = longitudCadena(cadena);
+
+    printf("%s\n", cadena);
 
     for(i=1;i<tam;i++)
     {
@@ -138,43 +140,54 @@ void subsecuencias(char *cadena)
                 mascara[j] = 0;
         }
 
-        printf("----\n");
+        /*printf("----\n");
 
         for(j=0;j<tam;j++)
             printf("%d", mascara[j]);
         printf("\n");
 
-        printf("----\n");
+        printf("----\n");*/
+
+        for(aux=cadena,x=0;*aux!='\0';aux++,x++)
+            //printf("%d", mascara[x]);
+            if(mascara[x]!=2)
+                printf("%c", *aux);
+        printf("\n");
         
         for(j=0;j<tam;j++)
         {
-
             for(k=0;k<tam;k++)
-            {
-                if(mascara[k]==1)
-                    mascara[k] = 0;
-            }
+                if(mascara[k]!=2)
+                    mascara[k] =0;
 
             if(mascara[j]==2)
             {
-                mascara[j] = 1;
+                flag = j;
                 for(k=0;k<tam;k++)
                 {
                     if(mascara[k] == 0)
                     {
                         mascara[k] = 2;
-                        for(x=0;x<tam;x++)
-                            printf("%d", mascara[x]);
+                        mascara[flag] = 1;
+
+                        flag = k;
+                        for(aux=cadena,x=0;*aux!='\0';aux++,x++)
+                            //printf("%d", mascara[x]);
+                            if(mascara[x]!=2)
+                                printf("%c", *aux);
                         printf("\n");
 
-                        mascara[k] = 1;
                     }
                 }
             }
+
+            cont++;
+            if(j==(i-1))
+                break;
         }
     }
 
-    printf("%d\n", tam);
+    printf("lambda\n");
 }
 
 void sufijos(char *cadena)
