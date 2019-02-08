@@ -19,9 +19,7 @@ int main(int argc, char const *argv[])
 
     char menu_1;
 
-    subsecuencias("computadora");
-
-    /*printf("Menu\n 1.- Seleccionar palabra\n 2.- Introducir palabra\n 3.- Salir\n -> ");
+    printf("Menu\n 1.- Seleccionar palabra\n 2.- Introducir palabra\n 3.- Salir\n -> ");
     scanf("%s", &menu_1);
 
     switch (menu_1)
@@ -50,7 +48,7 @@ int main(int argc, char const *argv[])
         default:
             printf("Selecciona una opcion correcta :(\n");
             break;
-    }*/
+    }
 
     return 0;
 }
